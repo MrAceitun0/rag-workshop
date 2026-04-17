@@ -17,25 +17,25 @@ En este taller vamos a implementar un chatbot para responder preguntas sobre tu 
 ### Creación de la Base de Conocimiento
 1. Al rellenar un formulario
 2. Simple Vector Store
-   a. Modo "Insert Documents"
+   1. Modo "Insert Documents"
 3. Embeddings Google Gemini
 4. Default Data Loader
-   a. Tipo: "Binary"
-   b. Modo: "All Input Data"
-   c. Formato de la documentación: "Automatic"
-   d. Separación de Texto: "Custom"
-   e. Metadata: "filename: {{ $json.filename }}"
+   1. Tipo: "Binary"
+   2. Modo: "All Input Data"
+   3. Formato de la documentación: "Automatic"
+   4. Separación de Texto: "Custom"
+   5. Metadata: "filename: {{ $json.filename }}"
 5. Recursive Character Text Splitter
-   a. Chunk Size: 1000
-   b. Chunk Overlap: 200
+   1. Chunk Size: 1000
+   2. Chunk Overlap: 200
 
 ### Implementación del Chatbot
 1. Al recibir un mensaje del chat
    1. Hazlo público con un mensaje inicial
 2. AI Agent - Añade Option -> System Message
-   '''
+   ```
    Eres un asistente servicial. Responde a las preguntas utilizando ÚNICAMENTE la información de la herramienta de base de conocimientos. Si la respuesta no se encuentra en la base de conocimientos, di: "No tengo esa información en mi base de conocimientos". No utilices conocimientos externos ni hagas suposiciones.
-   '''
+   ```
    1. Google Gemini Chat Model
    2. Memória de la Conversación - Simple Memory
    3. Base de Conocimiento - Simple Vector Store
@@ -48,8 +48,9 @@ En este taller vamos a implementar un chatbot para responder preguntas sobre tu 
 
 ### Extra: integraciones externas
 #### Web
-Ejecutar 
-'''
+Añade esto en tu web:
+
+```
 <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 <script type="module">
    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
@@ -58,6 +59,6 @@ Ejecutar
       webhookUrl: 'MY_WEB_HOOK_URL'
    });
 </script>
-'''
+```
 
 #### Telegram
