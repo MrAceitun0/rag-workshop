@@ -16,17 +16,16 @@ En este taller vamos a implementar un chatbot para responder preguntas sobre tu 
 ## Primeros pasos en n8n
 ### Creación de la Base de Conocimiento
 1. Al rellenar un formulario
-   1. label - filename    
+   1. label - "data"    
 3. Simple Vector Store
    1. Modo "Insert Documents"
 4. Embeddings Google Gemini
    1. Gemini Embedding 001    
 5. Default Data Loader
    1. Tipo: "Binary"
-   2. Modo: "All Input Data"
+   2. Modo: "Specific Data" - "data"
    3. Formato de la documentación: "Automatic"
    4. Separación de Texto: "Custom"
-   5. Metadata: "filename: {{ $json.filename }}" (arrastrando desde schema)
 6. Recursive Character Text Splitter
    1. Chunk Size: 1000
    2. Chunk Overlap: 200
