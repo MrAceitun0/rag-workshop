@@ -19,13 +19,14 @@ En este taller vamos a implementar un chatbot para responder preguntas sobre tu 
 2. Simple Vector Store
    1. Modo "Insert Documents"
 3. Embeddings Google Gemini
-4. Default Data Loader
+   1. Gemini Embedding 001    
+5. Default Data Loader
    1. Tipo: "Binary"
    2. Modo: "All Input Data"
    3. Formato de la documentación: "Automatic"
    4. Separación de Texto: "Custom"
    5. Metadata: "filename: {{ $json.filename }}"
-5. Recursive Character Text Splitter
+6. Recursive Character Text Splitter
    1. Chunk Size: 1000
    2. Chunk Overlap: 200
 
