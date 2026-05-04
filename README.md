@@ -9,7 +9,7 @@ En este taller vamos a implementar un chatbot para responder preguntas sobre tu 
 3. Empieza un free trial en [n8n](https://n8n.io/)
 4. Descarga estos documentos o usa los tuyos propios
    1. [Reglas del Golf](https://share.google/ACSvD0s1CGPaLYdNo)
-   2. [Resultados Financieros de Inditex 2025](https://www.inditex.com/itxcomweb/api/media/95537a57-b33e-4fcb-8822-a200d9da68c1/INDITEXResultadosEjercicio2025.pdf?t=1773210068550)
+   2. [Resultados Financieros de Inditex 2025](https://www.inditex.com/itxcomweb/api/media/95537a57-b33e-4fcb-8822-a200d9da68c1/INDITEXResultadosEjercicio2025.pdf)
    3. [Ejemplo ficticio - L'Heretat de Menorca](https://drive.google.com/file/d/1YW4krJAdQE7mvJFqRDVxAf3C-aWRpVpr/view?usp=sharing)
    4. Tus propios documentos
   
