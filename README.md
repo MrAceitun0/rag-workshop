@@ -4,7 +4,7 @@ Tech Stack: Gemini y n8n
 En este taller vamos a implementar un chatbot para responder preguntas sobre tu empresa utilizando RAG en Gemini y con el mínimo código necesario en n8n para un taller sin mucha carga técnica.
 
 ## Configuración Inicial
-1. Reclama tu 5$ de crédito gratuito en [Google Cloud](https://trygcp.dev/claim/deveco-gdg-f8282f82e99))
+1. Reclama tu 5$ de crédito gratuito en [Google Cloud](https://trygcp.dev/claim/deveco-gdg-f8282f82e99)
 2. Genera una API Key en [Google AI Studio](https://aistudio.google.com/)
 3. Empieza un free trial en [n8n](https://n8n.io/)
 4. Descarga estos documentos o usa los tuyos propios
