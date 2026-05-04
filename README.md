@@ -37,7 +37,7 @@ En este taller vamos a implementar un chatbot para responder preguntas sobre tu 
    Eres un asistente servicial. Responde a las preguntas utilizando ÚNICAMENTE la información de la herramienta de base de conocimientos. Si la respuesta no se encuentra en la base de conocimientos, di: "No tengo esa información en mi base de conocimientos". No utilices conocimientos externos ni hagas suposiciones.
    ```
    1. Google Gemini Chat Model
-   2. Memória de la Conversación - Simple Memory
+   2. Memoria de la Conversación - Simple Memory
    3. Base de Conocimiento - Simple Vector Store
       a. Modo: "Retrieve Documents (As Tool for AI Agent)"
    4. Embeddings for Retrieval
