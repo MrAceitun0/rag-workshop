@@ -1,5 +1,6 @@
 # Taller Automatización de Atención al Cliente 24/7
 Tech Stack: Gemini y n8n
+Creado por: [Sergi Olives](https://www.linkedin.com/in/sergiolives/)
 
 En este taller vamos a implementar un chatbot para responder preguntas sobre tu empresa utilizando RAG en Gemini y con el mínimo código necesario en n8n para un taller sin mucha carga técnica.
 
