@@ -1,0 +1,311 @@
+{
+  "name": "Descubre cómo implementar Atención al Cliente 24/7 con IA",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Sube tus archivos para el chatbot",
+        "formDescription": "Formulario para subir documentos para el chatbot",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.5,
+      "position": [
+        -144,
+        0
+      ],
+      "id": "feaf11b4-287f-436c-bb31-d731462bfd09",
+      "name": "On form submission",
+      "webhookId": "27cc5893-d297-41b5-aafc-6c3b0332041d"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        },
+        "clearStore": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6588639c-4a0a-4b38-adef-2e2e92e6a354",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        96,
+        208
+      ],
+      "id": "429b5589-c62a-4fd6-8f99-000f6c3c13cd",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "sKo2IhcHKVMDa7HH",
+          "name": "Google API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        352,
+        208
+      ],
+      "id": "f118333d-8448-49f3-90ad-4290963be165",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 200,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        368,
+        368
+      ],
+      "id": "5ad2061a-4d94-41b0-a578-de9e21a60a30",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Hola sóc en Pere, encantat d'ajudar-te!",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -160,
+        656
+      ],
+      "id": "8fedcc1a-2577-4976-a694-2cd23d372e01",
+      "name": "When chat message received",
+      "webhookId": "7eead7d1-761d-4e2f-bf92-6f281511ae80"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Eres un asistente servicial. Responde a las preguntas utilizando ÚNICAMENTE la información de la herramienta del VECTOR STORE. Si la respuesta no se encuentra en la base de conocimientos, di: \"No tengo esa información en mi base de conocimientos\". No utilices conocimientos externos ni hagas suposiciones."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        48,
+        656
+      ],
+      "id": "0c4f462b-2617-4d7c-9509-00249c368209",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -96,
+        864
+      ],
+      "id": "2ae9f10c-0eb6-4ac8-bc7a-ebc718f55017",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "sKo2IhcHKVMDa7HH",
+          "name": "Google API Key"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        64,
+        864
+      ],
+      "id": "d34f42c6-d32d-4772-8d07-78d7fff3471f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Esta herramienta es la única fuente de verdad para responder preguntas sobre l'Heretat de Menorca. Úsala SIEMPRE que el usuario haga una pregunta técnica o específica, incluso si crees que sabes la respuesta.",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        864
+      ],
+      "id": "c143deef-6295-43a3-bf6c-7451b4134428",
+      "name": "Simple Vector Store1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        224,
+        1024
+      ],
+      "id": "db413f20-fd66-4d25-abe8-21927980ad21",
+      "name": "Embeddings Google Gemini1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "sKo2IhcHKVMDa7HH",
+          "name": "Google API Key"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "66744748-ce8b-45d7-a1fc-e468f1c23cc8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3957daacd8a3934556573f1616523dd874a9d41e477c7672e74f518a9f029dca"
+  },
+  "id": "G1Bfzp0bEFFsyQMr",
+  "tags": []
+}
