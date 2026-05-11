@@ -65,3 +65,6 @@ Añade esto en tu web:
    });
 </script>
 ```
+
+## Ejemplo Completado
+Si descargas el archivo n8nWorkflow.json en este repositorio, puedes importarlo "Importar desde archivo..." y automáticamente tendrás el ejemplo completo para probar y modificar al gusto.
